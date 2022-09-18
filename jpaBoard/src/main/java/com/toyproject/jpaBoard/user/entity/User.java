@@ -1,11 +1,12 @@
 package com.toyproject.jpaBoard.user.entity;
 
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-@NoArgsConstructor
+@Getter
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,5 +15,12 @@ public class User {
 
     private String email;
 
+    private String password;
+
     private String name;
+
+    private LocalDateTime registerDt;
+
+    private LocalDateTime updateDt;
+
 }
