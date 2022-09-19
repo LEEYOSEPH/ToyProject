@@ -1,5 +1,6 @@
 package com.toyproject.jpaBoard.user.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -7,9 +8,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Builder
 public class User {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     @Column(name = "userId")
     private Long id;
 
@@ -22,5 +24,6 @@ public class User {
     private LocalDateTime registerDt;
 
     private LocalDateTime updateDt;
+
 
 }

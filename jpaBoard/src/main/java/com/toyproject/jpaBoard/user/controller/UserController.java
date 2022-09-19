@@ -1,6 +1,6 @@
 package com.toyproject.jpaBoard.user.controller;
 
-import com.toyproject.jpaBoard.user.dto.MemberForm;
+import com.toyproject.jpaBoard.user.dto.UserForm;
 import com.toyproject.jpaBoard.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +26,9 @@ public class UserController {
 
     /*회원 가입*/
     @PostMapping("/users/new")
-    public void createUser(@Valid MemberForm memberForm) {
+    public void createUser(@Valid UserForm userForm) {
 
-        userService.createUser(memberForm);
+         userService.createUser(userForm);
 
     }
 }

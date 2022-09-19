@@ -7,15 +7,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class MemberForm {
-
-    @NotBlank
-    private Long id;
+public class UserForm {
 
     @NotBlank
     @Email
     private String email;
-
 
     @NotBlank
     private String name;
