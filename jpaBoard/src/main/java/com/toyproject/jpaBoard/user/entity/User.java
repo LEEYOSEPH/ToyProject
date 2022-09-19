@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -21,9 +22,14 @@ public class User {
 
     private String name;
 
+    private String emailCheckToken;
+
     private LocalDateTime registerDt;
 
     private LocalDateTime updateDt;
 
 
+    public void generateEmailCheckToken() {
+        this.emailCheckToken = UUID.randomUUID().toString();
+    }
 }
