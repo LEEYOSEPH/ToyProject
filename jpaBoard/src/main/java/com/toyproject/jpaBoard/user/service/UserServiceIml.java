@@ -41,4 +41,9 @@ public class UserServiceIml implements  UserService{
         simpleMailMessage.setText("/checkEmailToken?token=" + newUser.getEmailCheckToken() + "&email=" + newUser.getEmail());
         javaMailSender.send(simpleMailMessage);
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return  userRepository.findByEmail(email);
+    }
 }

@@ -23,6 +23,7 @@ public class User {
     private String name;
 
     private String emailCheckToken;
+    private boolean emailVerified;
 
     private LocalDateTime registerDt;
 
@@ -31,5 +32,14 @@ public class User {
 
     public void generateEmailCheckToken() {
         this.emailCheckToken = UUID.randomUUID().toString();
+    }
+
+    public boolean isValidToken(String token) {
+        return this.emailCheckToken.equals(token);
+    }
+
+    public void completeCreated() {
+        this.emailVerified = true;
+        this.registerDt = LocalDateTime.now();
     }
 }
