@@ -1,5 +1,6 @@
 package com.toyproject.jpaBoard.user.controller;
 
+import com.toyproject.jpaBoard.user.dto.LoginUserForm;
 import com.toyproject.jpaBoard.user.dto.UserForm;
 import com.toyproject.jpaBoard.user.entity.User;
 import com.toyproject.jpaBoard.user.service.UserService;
@@ -18,6 +19,17 @@ public class UserController {
 
     private final UserService userService;
 
+    /*로그인 화면*/
+    @GetMapping("/login")
+    public void loginPage() {
+    }
+
+    /*로그인*/
+    @PostMapping("/login")
+    public void login(LoginUserForm loginUserForm) {
+        userService.login(loginUserForm);
+    }
+
 
     /*회원 가입 화면*/
     @GetMapping("/users/new")
@@ -28,9 +40,7 @@ public class UserController {
     /*회원 가입*/
     @PostMapping("/users/new")
     public void createUser(@Valid UserForm userForm) {
-
          userService.createUser(userForm);
-
     }
 
     /*Email 인증 토큰*/

@@ -1,5 +1,6 @@
 package com.toyproject.jpaBoard.user.service;
 
+import com.toyproject.jpaBoard.user.dto.LoginUserForm;
 import com.toyproject.jpaBoard.user.dto.UserForm;
 import com.toyproject.jpaBoard.user.entity.User;
 import com.toyproject.jpaBoard.user.repository.UserRepository;
@@ -45,5 +46,14 @@ public class UserServiceIml implements  UserService{
     @Override
     public User findByEmail(String email) {
         return  userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void login(LoginUserForm loginUserForm) {
+        User user = User.builder()
+                .email(loginUserForm.getEmail())
+                .password(loginUserForm.getPassword()) //encoding
+                .build();
+        userRepository.findByEmailAndPassword(user);
     }
 }
