@@ -54,6 +54,6 @@ public class UserServiceIml implements  UserService{
                 .email(loginUserForm.getEmail())
                 .password(loginUserForm.getPassword()) //encoding
                 .build();
-        userRepository.findByEmailAndPassword(user);
+      /*  userRepository.findByEmailAndPassword(user);*/
     }
 }

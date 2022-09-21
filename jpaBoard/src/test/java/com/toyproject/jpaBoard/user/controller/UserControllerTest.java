@@ -91,25 +91,6 @@ class UserControllerTest {
         System.out.println(save.getEmailCheckToken() + "이메일 인증 토큰");
     }
 
-    @Test
-    @DisplayName("로그인 성공")
-    public void loginComplete() {
-        // given
-        UserForm userForm = new UserForm();
-        userForm.setEmail("lyb6642");
-        userForm.setPassword("12345678999");
-        userForm.setName("yoseph");
 
-        //when
-        User user = User.builder()
-                .email(userForm.getEmail())
-                .password(userForm.getPassword())
-                .name(userForm.getName())
-                .build();
-        User save = userRepository.save(user);
-        User sav2e = userRepository.findByEmailAndPassword(user);
-
-        assertThat(sav2e.getId()).isEqualTo("1");
-    }
 
 }
