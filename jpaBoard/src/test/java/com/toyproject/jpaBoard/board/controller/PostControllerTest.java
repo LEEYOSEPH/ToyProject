@@ -11,6 +11,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -23,9 +25,18 @@ class PostControllerTest {
     @Test
     @DisplayName("/posts 요청시 확인")
     void test() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/posts"))
+        mockMvc.perform(post("/posts"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("zzz"))
-                .andDo(MockMvcResultHandlers.print());
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("/posts 요청시 title 값은 필수다.")
+    void test2() throws Exception {
+        mockMvc.perform(post("/posts"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("zzz"))
+                .andDo(print());
     }
 }
