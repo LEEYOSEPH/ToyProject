@@ -20,17 +20,8 @@ public class PostController {
     
     /*게시글 등록*/
     @PostMapping("/posts")
-    public Map<String,String> posts(@RequestBody @Valid PostCreate params, BindingResult result) {
-        if (result.hasErrors()) {
-            List<FieldError> fieldErrors = result.getFieldErrors();
-            FieldError fieldError = fieldErrors.get(0);
-            String fieldName = fieldError.getField(); // title
-            String errorMessage = fieldError.getDefaultMessage();
+    public Map<String,String> posts(@RequestBody @Valid PostCreate params) {
 
-            Map<String, String> error = new HashMap<>();
-            error.put(fieldName, errorMessage);
-            return error;
-        }
         return Map.of();
     }
 }
