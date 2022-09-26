@@ -1,8 +1,6 @@
 package com.toyproject.jpaBoard.board.request;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
@@ -16,4 +14,12 @@ public class PostCreate {
     private String content;
     @NotBlank
     private String name;
+
+
+    @Builder
+    public PostCreate(String title, String content, String name) {
+        this.title = title;
+        this.content = content;
+        this.name = name;
+    }
 }

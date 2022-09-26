@@ -19,8 +19,7 @@ public class PostController {
     
     /*게시글 등록*/
     @PostMapping("/posts")
-    public Map<String,String> posts(@RequestBody @Valid PostCreate request) {
+    public void posts(@RequestBody @Valid PostCreate request) {
         postService.write(request);
-        return Map.of();
     }
 }
