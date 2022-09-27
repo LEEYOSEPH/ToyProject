@@ -29,9 +29,16 @@ public class PostController {
     public PostResponse get(@PathVariable Long postId) {
         return postService.get(postId);
     }
-
+    
+    /*게시글 전체조회*/
     @GetMapping("/posts")
     public List<PostResponse> getList() {
         return postService.getList();
+    }
+
+    /*게시글 페이징 처리*/
+    @GetMapping("/posts")
+    public List<PostResponse> getList(@ModelAttribute PostSearch postSearch ) {
+        return postService.getList(postSearch);
     }
 }
