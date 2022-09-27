@@ -1,5 +1,6 @@
 package com.toyproject.jpaBoard.board.controller;
 
+import com.toyproject.jpaBoard.board.repository.Post;
 import com.toyproject.jpaBoard.board.request.PostCreate;
 import com.toyproject.jpaBoard.board.response.PostResponse;
 import com.toyproject.jpaBoard.board.service.PostService;
@@ -8,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 @Slf4j
 @RestController
@@ -26,5 +28,10 @@ public class PostController {
     @GetMapping("/posts/{postId}")
     public PostResponse get(@PathVariable Long postId) {
         return postService.get(postId);
+    }
+
+    @GetMapping("/posts")
+    public List<PostResponse> getList() {
+        return postService.getList();
     }
 }
