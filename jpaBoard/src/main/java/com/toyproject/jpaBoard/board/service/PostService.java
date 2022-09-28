@@ -1,13 +1,16 @@
 package com.toyproject.jpaBoard.board.service;
 
 import com.toyproject.jpaBoard.board.domain.Post;
+import com.toyproject.jpaBoard.board.domain.PostEditor;
 import com.toyproject.jpaBoard.board.repository.PostRepository;
 import com.toyproject.jpaBoard.board.request.PostCreate;
+import com.toyproject.jpaBoard.board.request.PostEdit;
 import com.toyproject.jpaBoard.board.request.PostSearch;
 import com.toyproject.jpaBoard.board.response.PostResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,15 +43,23 @@ public class PostService {
                 .build();
     }
 
-    public List<PostResponse> getList() {
-        return postRepository.findAll().stream()
-                .map(post -> new PostResponse(post))
-                        .collect(Collectors.toList());
-    }
 
     public List<PostResponse> getList(PostSearch postSearch ) {
         return postRepository.getList(postSearch).stream()
                 .map(PostResponse::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void edit(Long id, PostEdit postEdit) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("no"));
+
+        PostEditor.PostEditorBuilder postEditorBuilder = post.toEditor();
+
+        PostEditor postEditor = postEditorBuilder.title(postEdit.getTitle())
+                                                .content(postEdit.getContent())
+                                                .build();
+        post.edit(postEditor);
     }
 }

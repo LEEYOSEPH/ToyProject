@@ -1,6 +1,7 @@
 package com.toyproject.jpaBoard.board.controller;
 
 import com.toyproject.jpaBoard.board.request.PostCreate;
+import com.toyproject.jpaBoard.board.request.PostEdit;
 import com.toyproject.jpaBoard.board.request.PostSearch;
 import com.toyproject.jpaBoard.board.response.PostResponse;
 import com.toyproject.jpaBoard.board.service.PostService;
@@ -29,16 +30,16 @@ public class PostController {
     public PostResponse get(@PathVariable Long postId) {
         return postService.get(postId);
     }
-    
-    /*게시글 전체조회*/
-    @GetMapping("/posts")
-    public List<PostResponse> getList() {
-        return postService.getList();
-    }
 
     /*게시글 페이징 처리*/
    @GetMapping("/posts")
     public List<PostResponse> getList(@ModelAttribute PostSearch postSearch ) {
         return postService.getList(postSearch);
+    }
+
+    /*게시글 수정*/
+    @PatchMapping("/posts/{postId}")
+    public void edit(@PathVariable Long boardId, @RequestBody @Valid PostEdit request) {
+        postService.edit(boardId,request);
     }
 }
