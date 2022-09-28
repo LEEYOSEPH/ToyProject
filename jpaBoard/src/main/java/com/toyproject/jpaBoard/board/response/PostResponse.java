@@ -1,6 +1,6 @@
 package com.toyproject.jpaBoard.board.response;
 
-import com.toyproject.jpaBoard.board.repository.Post;
+import com.toyproject.jpaBoard.board.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 

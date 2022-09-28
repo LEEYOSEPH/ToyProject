@@ -1,7 +1,7 @@
 package com.toyproject.jpaBoard.board.controller;
 
-import com.toyproject.jpaBoard.board.repository.Post;
 import com.toyproject.jpaBoard.board.request.PostCreate;
+import com.toyproject.jpaBoard.board.request.PostSearch;
 import com.toyproject.jpaBoard.board.response.PostResponse;
 import com.toyproject.jpaBoard.board.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -37,7 +37,7 @@ public class PostController {
     }
 
     /*게시글 페이징 처리*/
-    @GetMapping("/posts")
+   @GetMapping("/posts")
     public List<PostResponse> getList(@ModelAttribute PostSearch postSearch ) {
         return postService.getList(postSearch);
     }

@@ -1,4 +1,4 @@
-package com.toyproject.jpaBoard.board.repository;
+package com.toyproject.jpaBoard.board.domain;
 
 import lombok.AccessLevel;
 import lombok.Builder;

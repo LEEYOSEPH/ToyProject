@@ -1,8 +1,9 @@
 package com.toyproject.jpaBoard.board.service;
 
-import com.toyproject.jpaBoard.board.repository.Post;
+import com.toyproject.jpaBoard.board.domain.Post;
 import com.toyproject.jpaBoard.board.repository.PostRepository;
 import com.toyproject.jpaBoard.board.request.PostCreate;
+import com.toyproject.jpaBoard.board.request.PostSearch;
 import com.toyproject.jpaBoard.board.response.PostResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +31,7 @@ public class PostService {
 
     public PostResponse get(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow(PostNotFound::new);
+                .orElseThrow();
 
         return PostResponse.builder()
                 .id(post.getId())
@@ -45,8 +46,8 @@ public class PostService {
                         .collect(Collectors.toList());
     }
 
-    public List<PostResponse> getList(int page ) {
-        return postRepository.getList(page).stream()
+    public List<PostResponse> getList(PostSearch postSearch ) {
+        return postRepository.getList(postSearch).stream()
                 .map(PostResponse::new)
                 .collect(Collectors.toList());
     }
