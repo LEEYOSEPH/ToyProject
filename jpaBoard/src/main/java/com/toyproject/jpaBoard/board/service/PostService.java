@@ -62,4 +62,13 @@ public class PostService {
                                                 .build();
         post.edit(postEditor);
     }
+
+    public void delete(Long postId) {
+
+        Post post = postRepository.findById(postId)
+                .orElseThrow();
+
+        postRepository.delete(post);
+
+    }
 }
