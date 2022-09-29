@@ -2,6 +2,7 @@ package com.toyproject.jpaBoard.board.service;
 
 import com.toyproject.jpaBoard.board.domain.Post;
 import com.toyproject.jpaBoard.board.domain.PostEditor;
+import com.toyproject.jpaBoard.board.exception.PostNotFound;
 import com.toyproject.jpaBoard.board.repository.PostRepository;
 import com.toyproject.jpaBoard.board.request.PostCreate;
 import com.toyproject.jpaBoard.board.request.PostEdit;
@@ -34,7 +35,7 @@ public class PostService {
 
     public PostResponse get(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(PostNotFound::new);
 
         return PostResponse.builder()
                 .id(post.getId())
@@ -53,7 +54,7 @@ public class PostService {
     @Transactional
     public void edit(Long id, PostEdit postEdit) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("no"));
+                .orElseThrow(PostNotFound::new);
 
         PostEditor.PostEditorBuilder postEditorBuilder = post.toEditor();
 
